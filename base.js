@@ -1,4 +1,5 @@
 let imgCounter = 0;
+let pressedNext = 0;
 
 let searched = false;
 
@@ -16,12 +17,62 @@ async function populateImages() {
             //Create nästa- och föregåendeknappar
             let nextBtn = document.createElement("button");
             nextBtn.textContent = "Nästa bild"
-            // nextBtn.onclick="nextImg()";
+            nextBtn.onclick = function () {
+
+                pressedNext++;
+
+                // document.getElementById("searchBtn").removeAttribute("onclick");
+
+                let img = document.createElement("img");
+                img.src = imgArray[imgCounter];
+                img.id = "createdImg" + imgCounter;
+                document.getElementById("galImgs").appendChild(img);
+                // console.log(imgCounter);
+
+                if (imgCounter > 0 && (imgCounter - 1 < pressedNext) && imgCounter < imgArray.length) {
+                    document.getElementById("createdImg" + imgCounter).remove();
+                    document.getElementById("createdImg0").src = imgArray[imgCounter];
+
+                } else if (imgCounter >= galImgs.length) {
+                    document.getElementById("createdImg" + imgCounter).remove();
+                    document.getElementById("createdImg0").src = imgArray[imgCounter];
+                }
+
+                imgCounter++;
+
+                if (imgCounter >= imgArray.length) {
+                    imgCounter = 0;
+                    document.getElementById("createdImg" + imgCounter).remove();
+                }
+            };
 
             let previousBtn = document.createElement("button");
             previousBtn.textContent = "Föregående bild"
-            document.getElementById("galImgs").appendChild(previousBtn);
+            previousBtn.onclick = function () {
 
+                // document.getElementById("searchBtn").removeAttribute("onclick");
+
+                console.log("Img counter: " + imgCounter);
+
+                let img = document.createElement("img");
+                img.src = imgArray[imgCounter];
+                img.id = "createdImg" + imgCounter;
+                document.getElementById("galImgs").appendChild(img);
+                // console.log(imgCounter);
+
+                if (imgCounter > 0 && imgCounter < imgArray.length) {
+                    document.getElementById("createdImg" + imgCounter).remove();
+                    document.getElementById("createdImg0").src = imgArray[imgCounter - 1];
+
+                } else if (imgCounter >= galImgs.length) {
+                    document.getElementById("createdImg" + imgCounter).remove();
+                    document.getElementById("createdImg0").src = imgArray[imgCounter - 1];
+                }
+
+                imgCounter--;
+            };
+
+            document.getElementById("galImgs").appendChild(previousBtn);
             document.getElementById("galImgs").appendChild(nextBtn);
 
             searched = true;
