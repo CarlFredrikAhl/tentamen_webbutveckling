@@ -68,6 +68,7 @@ async function populateImages() {
 
         let galImgs = document.getElementById("galImgs").getElementsByClassName("img");
 
+        //test
         let img = document.createElement("img");
         img.src = imgURL;
         // img.id = "createdImg" + imgCounter;
