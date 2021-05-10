@@ -53,6 +53,8 @@ async function populateImages() {
 
     console.log(data);
 
+    let imgArray = [];
+
     //Loop through the data
     for (let photo of data.photos.photo) {
         console.log(photo.title);
@@ -66,31 +68,33 @@ async function populateImages() {
         // let imgURL = "https://farm" + farm + ".staticflickr.com/" + serverId + "/" + id + "_" + secret + "_[mstzb].jpg"
         let imgURL = "https://live.staticflickr.com/" + serverId + "/" + id + "_" + secret + ".jpg"
 
-        let galImgs = document.getElementById("galImgs").getElementsByClassName("img");
+        imgArray.push(imgURL);
+    }
+
+    let galImgs = document.getElementById("galImgs").getElementsByClassName("img");
 
         //test
         let img = document.createElement("img");
-        img.src = imgURL;
-        // img.id = "createdImg" + imgCounter;
+        img.src = imgArray[imgCounter];
+        img.id = "createdImg" + imgCounter;
         document.getElementById("galImgs").appendChild(img);
         // console.log(imgCounter);
 
-        // if (imgCounter > 0 && imgCounter < galImgs.length) {
-        //     document.getElementById("createdImg" + imgCounter).remove();
-        //     document.getElementById("createdImg0").src = galImgs[imgCounter].textContent;
+        if (imgCounter > 0 && imgCounter < imgArray.length) {
+            document.getElementById("createdImg" + imgCounter).remove();
+            document.getElementById("createdImg0").src = imgArray[imgCounter];
 
-        // } else if (imgCounter >= galImgs.length) {
-        //     document.getElementById("createdImg" + imgCounter).remove();
-        //     document.getElementById("createdImg0").src = galImgs[imgCounter].textContent;
-        // }
+        } else if (imgCounter >= galImgs.length) {
+            document.getElementById("createdImg" + imgCounter).remove();
+            document.getElementById("createdImg0").src = imgArray[imgCounter];
+        }
 
-        // imgCounter++;
+        imgCounter++;
 
-        // if (imgCounter >= galImgs.length) {
-        //     imgCounter = 0;
-        //     document.getElementById("createdImg" + imgCounter).remove();
-        // }
-    }
+        if (imgCounter >= imgArray.length) {
+            imgCounter = 0;
+            document.getElementById("createdImg" + imgCounter).remove();
+        }
 }
 
 
