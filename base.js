@@ -20,6 +20,7 @@ async function populateImages() {
             nextBtn.onclick = function () {
 
                 pressedNext++;
+                console.log("imgCounter: " + imgCounter);
 
                 // document.getElementById("searchBtn").removeAttribute("onclick");
 
@@ -49,13 +50,12 @@ async function populateImages() {
 
             let previousBtn = document.createElement("button");
             previousBtn.textContent = "Föregående bild"
-            previousBtn.onclick = function () {
-
-                // document.getElementById("searchBtn").removeAttribute("onclick");
+            previousBtn.onclick = function () {                
 
                 if(pressedNext > 0 && pressedNext < 6 && imgCounter > 0) {
 
                     imgCounter--;
+                    pressedNext--;
                 console.log("Img counter: " + imgCounter);
                 let img = document.createElement("img");
                 img.src = imgArray[imgCounter];
