@@ -16,6 +16,7 @@
 div img {
     margin-right: auto;
     margin-left: auto;
+    margin-top: 50px;
     object-fit:cover;
     height: 600px;
     width: 100%;
@@ -25,9 +26,10 @@ div img {
     border-color: gold;
 }
 
-button {
+div button {
     height: 100px;
     width: 200px;
+    margin-top:10px;
 }
 
 div p {
@@ -44,6 +46,12 @@ section {
     justify-content: center;
     align-items:center;
     padding-bottom:30px;
+}
+
+.searchBtn {
+    height: 65px;
+    width: 150px;
+    margin-left: 10px;
 }
 
 input {
