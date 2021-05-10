@@ -42,6 +42,7 @@ async function populateImages() {
 
                 if (imgCounter >= imgArray.length) {
                     imgCounter = 0;
+                    pressedNext = 1;
                     document.getElementById("createdImg" + imgCounter).remove();
                 }
             };
@@ -52,12 +53,15 @@ async function populateImages() {
 
                 // document.getElementById("searchBtn").removeAttribute("onclick");
 
-                console.log("Img counter: " + imgCounter);
+                if(pressedNext > 0 && pressedNext < 6 && imgCounter > 0) {
 
+                    imgCounter--;
+                console.log("Img counter: " + imgCounter);
                 let img = document.createElement("img");
                 img.src = imgArray[imgCounter];
                 img.id = "createdImg" + imgCounter;
                 document.getElementById("galImgs").appendChild(img);
+                }
                 // console.log(imgCounter);
 
                 if (imgCounter > 0 && imgCounter < imgArray.length) {
@@ -69,7 +73,7 @@ async function populateImages() {
                     document.getElementById("createdImg0").src = imgArray[imgCounter - 1];
                 }
 
-                imgCounter--;
+                
             };
 
             document.getElementById("galImgs").appendChild(previousBtn);
