@@ -54,6 +54,14 @@ section {
     margin-left: 10px;
 }
 
+.searchResults {
+    height: 60px;
+    width: 100px;
+    font-size:medium;
+    text-align: center;
+    margin-left: 10px;
+}
+
 input {
     height: 60px;
     width: 300px;

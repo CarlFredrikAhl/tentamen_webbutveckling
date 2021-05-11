@@ -5,57 +5,63 @@ let searched = false;
 
 async function populateImages() {
 
-    //Change search button to restart button
-    let searchBtn = document.getElementById("searchBtn");
-    searchBtn.textContent = "Tryck för att börja om sökning"
-    searchBtn.onclick = function() {
-        location.reload();
-    };
-
     let searchText = document.getElementById("searchText").value;
+    let searchResults = document.getElementById("searchResults").value;
 
-    if (searchText == "") {
-        alert("Du måste söka på något först");
+    if (searchText == "" || searchResults == "") {
+        alert("Du måste fylla i alla fält");
 
     } else {
 
         if (searched == false) {
 
+            console.log("Search text: " + searchText);
+            console.log("Search results: " + searchResults);
+
+            //Change search button to restart button
+            let searchBtn = document.getElementById("searchBtn");
+            searchBtn.textContent = "Tryck för att börja om sökning"
+            searchBtn.onclick = function () {
+                location.reload();
+            };
+
             //Create nästa- och föregåendeknappar
             let nextBtn = document.createElement("button");
             nextBtn.textContent = "Nästa bild"
-            
+
             //Next button onclick
             nextBtn.onclick = function () {
 
-                if (imgCounter > 0 && imgCounter < 6) {
-                    imgCounter++;
-                    console.log("Nästa " + imgCounter);
+                imgCounter++;
+
+                if (imgCounter > 0 && imgCounter <= searchResults) {
+                    console.log(imgCounter);
                     img.src = imgArray[imgCounter];
+                    // imgCounter++;
                 }
 
-                if(imgCounter >= 6) {
+                if (imgCounter > Number(searchResults) - Number(1)) {
                     imgCounter = 0;
-                    console.log("Nästa " + imgCounter);
+                    console.log(imgCounter);
                     img.src = imgArray[imgCounter];
-                    imgCounter++;
+                    // imgCounter++;
                 }
             };
 
             let previousBtn = document.createElement("button");
             previousBtn.textContent = "Föregående bild"
-            
+
             //Previous button onclick
             previousBtn.onclick = function () {
 
-                if (imgCounter > 1 && imgCounter <= 6) {
+                if (imgCounter > 1 && imgCounter <= searchResults) {
                     imgCounter--;
-                    console.log("Föregående " + imgCounter);
+                    console.log(imgCounter);
                     img.src = imgArray[imgCounter];
                 }
 
                 if (imgCounter == 1) {
-                    console.log("Föregående " + 0);
+                    console.log(imgCounter);
                     img.src = imgArray[0];
                 }
             };
@@ -66,7 +72,7 @@ async function populateImages() {
             searched = true;
         }
 
-        let perPage = 6;
+        let perPage =searchResults;
 
         console.log(searchText)
 
@@ -111,6 +117,7 @@ async function populateImages() {
         let galImgs = document.getElementById("galImgs").getElementsByClassName("img");
 
         let img = document.createElement("img");
+        console.log(imgCounter);
         img.src = imgArray[imgCounter];
         img.id = "createdImg" + imgCounter;
         img.onmouseover = function () {
@@ -126,12 +133,11 @@ async function populateImages() {
             document.getElementById("createdImg" + imgCounter).remove();
             document.getElementById("createdImg0").src = imgArray[imgCounter];
 
-        } else if (imgCounter >= galImgs.length) {
-            document.getElementById("createdImg" + imgCounter).remove();
-            document.getElementById("createdImg0").src = imgArray[imgCounter];
-        }
-
-        imgCounter++;
+        } 
+        // else if (imgCounter >= galImgs.length) {
+        //     document.getElementById("createdImg" + imgCounter).remove();
+        //     document.getElementById("createdImg0").src = imgArray[imgCounter];
+        // }
 
         if (imgCounter >= imgArray.length) {
             imgCounter = 0;
