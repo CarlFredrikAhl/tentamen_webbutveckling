@@ -6,14 +6,14 @@ let searched = false;
 let searchType = document.getElementById("searchType");
 let searchText = document.getElementById("searchText");
 
-searchType.onclick = function() {
+searchType.onclick = function () {
     console.log("click search type");
     console.log(searchText.placeholder);
     console.log(searchType.value);
 
-    if(searchType.value == "searchText") {
+    if (searchType.value == "searchText") {
         searchText.placeholder = "Sök med ord, tex 'Hund'";
-    
+
     } else {
         searchText.placeholder = "Sök med taggar separerat med ','";
     }
@@ -82,7 +82,7 @@ async function populateImages() {
                 }
 
                 //Reenable privious button
-                if(imgCounter > 0) {
+                if (imgCounter > 0) {
                     previousBtn.disabled = false;
                 }
             };
@@ -149,13 +149,13 @@ async function populateImages() {
         //Starting as the base query and then it will be concatinated
         //to the final query
         let query = "?method=flickr.photos.search&api_key=" + key;
-        
-        if(searchType.value == "searchText") {
+
+        if (searchType.value == "searchText") {
             query += "&text=" + searchText; //What we search for
             query += "&per_page=" + perPage;
             query += "&format=json" //The result will be in json
             query += "&nojsoncallback=1" //Needed to know that it's json
-        
+
         } else {
             console.log("Searched with tags");
             query += "&tags=" + searchText; //What we search for
@@ -188,8 +188,6 @@ async function populateImages() {
 
             imgArray.push(imgURL);
         }
-
-        let galImgs = document.getElementById("galImgs").getElementsByClassName("img");
 
         let img = document.createElement("img");
         console.log(imgCounter);
