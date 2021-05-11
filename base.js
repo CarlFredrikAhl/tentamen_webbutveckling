@@ -28,6 +28,7 @@ async function populateImages() {
             //Create nästa- och föregåendeknappar
             let nextBtn = document.createElement("button");
             nextBtn.textContent = "Nästa bild"
+            nextBtn.className += "navBtns";
 
             //Next button onclick
             nextBtn.onclick = function () {
@@ -50,6 +51,7 @@ async function populateImages() {
 
             let previousBtn = document.createElement("button");
             previousBtn.textContent = "Föregående bild"
+            previousBtn.className += "navBtns";
 
             //Previous button onclick
             previousBtn.onclick = function () {
@@ -67,13 +69,13 @@ async function populateImages() {
                 }
             };
 
-            document.getElementById("galImgs").appendChild(previousBtn);
-            document.getElementById("galImgs").appendChild(nextBtn);
+            document.getElementById("previousNextSection").appendChild(previousBtn);
+            document.getElementById("previousNextSection").appendChild(nextBtn);
 
             searched = true;
         }
 
-        let perPage =searchResults;
+        let perPage = searchResults;
 
         console.log(searchText)
 
@@ -121,12 +123,12 @@ async function populateImages() {
         console.log(imgCounter);
         img.src = imgArray[imgCounter];
         img.id = "createdImg" + imgCounter;
-        img.onmouseover = function () {
-            resize(img);
-        };
-        img.onmouseout = function () {
-            normalSize(img);
-        };
+        // img.onmouseover = function () {
+        //     resize(img);
+        // };
+        // img.onmouseout = function () {
+        //     normalSize(img);
+        // };
         document.getElementById("galImgs").appendChild(img);
         // console.log(imgCounter);
 
@@ -134,7 +136,7 @@ async function populateImages() {
             document.getElementById("createdImg" + imgCounter).remove();
             document.getElementById("createdImg0").src = imgArray[imgCounter];
 
-        } 
+        }
         // else if (imgCounter >= galImgs.length) {
         //     document.getElementById("createdImg" + imgCounter).remove();
         //     document.getElementById("createdImg0").src = imgArray[imgCounter];
@@ -147,13 +149,17 @@ async function populateImages() {
     }
 }
 
-function resize(obj) {
-    obj.style.height = "800px";
-}
+// function resize(obj) {
+//     // obj.style.height = "800px";
+//     var currWidth = obj.clientWidth;
+//     obj.style.width = (currWidth + 200) + "px";
+// }
 
-function normalSize(obj) {
-    obj.style.height = "600px";
-}
+// function normalSize(obj) {
+//     // obj.style.height = "600px";
+//     var currWidth = obj.clientWidth;
+//     obj.style.width = (currWidth - 200) + "px";
+// }
 
 
 
