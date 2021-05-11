@@ -48,13 +48,16 @@ async function populateImages() {
                 //     document.getElementById("createdImg" + imgCounter).remove();
                 // }
 
-                img.src = imgArray[imgCounter + 1];
-                imgCounter++;
+                if (imgCounter > 0 && imgCounter < 6) {
+                    imgCounter++;
+                    console.log("Nästa " + imgCounter);
+                    img.src = imgArray[imgCounter];
+                }
             };
 
             let previousBtn = document.createElement("button");
             previousBtn.textContent = "Föregående bild"
-            previousBtn.onclick = function () {                
+            previousBtn.onclick = function () {
 
                 // if(pressedNext > 0 && pressedNext < 6) {
 
@@ -78,8 +81,16 @@ async function populateImages() {
                 //     document.getElementById("createdImg0").src = imgArray[imgCounter - 1];
                 // }
 
-                imgCounter--;
-                img.src = imgArray[imgCounter - 1];
+                if (imgCounter > 1 && imgCounter <= 6) {
+                    imgCounter--;
+                    console.log("Föregående " + imgCounter);
+                    img.src = imgArray[imgCounter];
+                }
+
+                if(imgCounter == 1) {
+                    console.log("Föregående " + 0);
+                    img.src = imgArray[0];
+                }
             };
 
             document.getElementById("galImgs").appendChild(previousBtn);
@@ -135,10 +146,10 @@ async function populateImages() {
         let img = document.createElement("img");
         img.src = imgArray[imgCounter];
         img.id = "createdImg" + imgCounter;
-        img.onmouseover = function() {
+        img.onmouseover = function () {
             resize(img);
         };
-        img.onmouseout = function() {
+        img.onmouseout = function () {
             normalSize(img);
         };
         document.getElementById("galImgs").appendChild(img);
