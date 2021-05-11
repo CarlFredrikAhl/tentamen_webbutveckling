@@ -149,10 +149,20 @@ async function populateImages() {
         //Starting as the base query and then it will be concatinated
         //to the final query
         let query = "?method=flickr.photos.search&api_key=" + key;
-        query += "&text=" + searchText; //What we search for
-        query += "&per_page=" + perPage;
-        query += "&format=json" //The result will be in json
-        query += "&nojsoncallback=1" //Needed to know that it's json
+        
+        if(searchType.value == "searchText") {
+            query += "&text=" + searchText; //What we search for
+            query += "&per_page=" + perPage;
+            query += "&format=json" //The result will be in json
+            query += "&nojsoncallback=1" //Needed to know that it's json
+        
+        } else {
+            console.log("Searched with tags");
+            query += "&tags=" + searchText; //What we search for
+            query += "&per_page=" + perPage;
+            query += "&format=json" //The result will be in json
+            query += "&nojsoncallback=1" //Needed to know that it's json
+        }
 
         let finalURl = baseURL + query;
 

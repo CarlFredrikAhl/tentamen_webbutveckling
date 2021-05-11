@@ -103,8 +103,8 @@ button {
 input {
     height: 60px;
     width: 300px;
-    font-size: large;
-    /* text-align: center; */
+    font-size: medium;
+    text-align: center;
 }
 
 select {
