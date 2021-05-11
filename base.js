@@ -15,7 +15,7 @@ searchType.onclick = function() {
         searchText.placeholder = "Sök med ord, tex 'Hund'";
     
     } else {
-        searchText.placeholder = "Sök med tags separerat med ','";
+        searchText.placeholder = "Sök med taggar separerat med ','";
     }
 };
 
