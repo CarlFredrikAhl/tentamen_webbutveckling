@@ -90,7 +90,12 @@ button {
     margin-right: auto;
     margin-top: 0px;
     /* background-color: red; */
-    gap:10px;
+    gap:20px;
+}
+
+#previousNextSection p {
+    font-size:x-large;
+    margin-top: 15px;
 }
 
 

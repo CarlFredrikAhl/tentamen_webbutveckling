@@ -28,7 +28,13 @@ async function populateImages() {
             //Create nästa- och föregåendeknappar
             let nextBtn = document.createElement("button");
             nextBtn.textContent = "Nästa bild"
+            nextBtn.style.order = "3";
             nextBtn.className += "navBtns";
+
+            //Disable next button when we reach the end
+            if (imgCounter >= Number(searchResults) - Number(1)) {
+                nextBtn.disabled = true;
+            }
 
             //Next button onclick
             nextBtn.onclick = function () {
@@ -38,6 +44,7 @@ async function populateImages() {
                 if (imgCounter > 0 && imgCounter <= searchResults) {
                     console.log(imgCounter);
                     img.src = imgArray[imgCounter];
+                    curImgText.textContent = Number(imgCounter) + Number(1) + "/" + searchResults;
                     // imgCounter++;
                 }
 
@@ -46,13 +53,30 @@ async function populateImages() {
                     imgCounter = Number(searchResults) - Number(1);
                     console.log(imgCounter);
                     img.src = imgArray[imgCounter];
+                    curImgText.textContent = Number(imgCounter) + Number(1) + "/" + searchResults;
                     // imgCounter++;
+                }
+
+                //Disable next button when we reach the end
+                if (imgCounter >= Number(searchResults) - Number(1)) {
+                    nextBtn.disabled = true;
+                }
+
+                //Reenable privious button
+                if(imgCounter > 0) {
+                    previousBtn.disabled = false;
                 }
             };
 
             let previousBtn = document.createElement("button");
             previousBtn.textContent = "Föregående bild"
+            previousBtn.style.order = "1";
             previousBtn.className += "navBtns";
+
+            //Disable previous button
+            if (imgCounter == 0) {
+                previousBtn.disabled = true;
+            }
 
             //Previous button onclick
             previousBtn.onclick = function () {
@@ -61,14 +85,32 @@ async function populateImages() {
                     imgCounter--;
                     console.log(imgCounter);
                     img.src = imgArray[imgCounter];
+                    curImgText.textContent = Number(imgCounter) + Number(1) + "/" + searchResults;
                 }
 
                 if (imgCounter == 1) {
                     imgCounter--;
                     console.log(imgCounter);
                     img.src = imgArray[imgCounter];
+                    curImgText.textContent = Number(imgCounter) + Number(1) + "/" + searchResults;
+                }
+
+                //Reenable next button when the end isn't reached anymore
+                if (imgCounter != Number(searchResults) - Number(1)) {
+                    nextBtn.disabled = false;
+                }
+
+                //Disable previous button
+                if (imgCounter == 0) {
+                    previousBtn.disabled = true;
                 }
             };
+
+            //Create p that will show which image your on
+            let curImgText = document.createElement("p");
+            curImgText.textContent = Number(imgCounter) + Number(1) + "/" + searchResults;
+            curImgText.style.order = "2";
+            document.getElementById("previousNextSection").appendChild(curImgText);
 
             document.getElementById("previousNextSection").appendChild(previousBtn);
             document.getElementById("previousNextSection").appendChild(nextBtn);
