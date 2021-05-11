@@ -41,8 +41,9 @@ async function populateImages() {
                     // imgCounter++;
                 }
 
+                //The last image
                 if (imgCounter > Number(searchResults) - Number(1)) {
-                    imgCounter = 0;
+                    imgCounter = Number(searchResults) - Number(1);
                     console.log(imgCounter);
                     img.src = imgArray[imgCounter];
                     // imgCounter++;
