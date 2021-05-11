@@ -5,6 +5,13 @@ let searched = false;
 
 async function populateImages() {
 
+    //Change search button to restart button
+    let searchBtn = document.getElementById("searchBtn");
+    searchBtn.textContent = "Tryck för att börja om sökning"
+    searchBtn.onclick = function() {
+        location.reload();
+    };
+
     let searchText = document.getElementById("searchText").value;
 
     if (searchText == "") {
