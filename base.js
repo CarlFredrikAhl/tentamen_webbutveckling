@@ -61,8 +61,9 @@ async function populateImages() {
                 }
 
                 if (imgCounter == 1) {
+                    imgCounter--;
                     console.log(imgCounter);
-                    img.src = imgArray[0];
+                    img.src = imgArray[imgCounter];
                 }
             };
 
