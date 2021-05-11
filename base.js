@@ -17,69 +17,29 @@ async function populateImages() {
             //Create nästa- och föregåendeknappar
             let nextBtn = document.createElement("button");
             nextBtn.textContent = "Nästa bild"
+            
+            //Next button onclick
             nextBtn.onclick = function () {
-
-                // pressedNext++;
-                // console.log("imgCounter: " + imgCounter);
-                // console.log("Pressed next: " + pressedNext);
-
-                // // document.getElementById("searchBtn").removeAttribute("onclick");
-
-                // let img = document.createElement("img");
-                // img.src = imgArray[imgCounter];
-                // img.id = "createdImg" + imgCounter;
-                // document.getElementById("galImgs").appendChild(img);
-                // // console.log(imgCounter);
-
-                // if (imgCounter > 0 && (imgCounter - 1 < pressedNext) && imgCounter < imgArray.length) {
-                //     document.getElementById("createdImg" + imgCounter).remove();
-                //     document.getElementById("createdImg0").src = imgArray[imgCounter];
-
-                // } else if (imgCounter >= galImgs.length) {
-                //     document.getElementById("createdImg" + imgCounter).remove();
-                //     document.getElementById("createdImg0").src = imgArray[imgCounter];
-                // }
-
-                // imgCounter++;
-
-                // if (imgCounter >= imgArray.length) {
-                //     imgCounter = 0;
-                //     pressedNext = 1;
-                //     document.getElementById("createdImg" + imgCounter).remove();
-                // }
 
                 if (imgCounter > 0 && imgCounter < 6) {
                     imgCounter++;
                     console.log("Nästa " + imgCounter);
                     img.src = imgArray[imgCounter];
                 }
+
+                if(imgCounter >= 6) {
+                    imgCounter = 0;
+                    console.log("Nästa " + imgCounter);
+                    img.src = imgArray[imgCounter];
+                    imgCounter++;
+                }
             };
 
             let previousBtn = document.createElement("button");
             previousBtn.textContent = "Föregående bild"
+            
+            //Previous button onclick
             previousBtn.onclick = function () {
-
-                // if(pressedNext > 0 && pressedNext < 6) {
-
-                //     imgCounter--;
-                //     pressedNext--;
-                // console.log("Img counter: " + imgCounter);
-                // console.log("Pressed next: " + pressedNext);
-                // let img = document.createElement("img");
-                // img.src = imgArray[imgCounter];
-                // img.id = "createdImg" + imgCounter;
-                // document.getElementById("galImgs").appendChild(img);
-                // }
-                // // console.log(imgCounter);
-
-                // if (imgCounter > 0 && imgCounter < imgArray.length) {
-                //     document.getElementById("createdImg" + imgCounter).remove();
-                //     document.getElementById("createdImg0").src = imgArray[imgCounter - 1];
-
-                // } else if (imgCounter >= galImgs.length) {
-                //     document.getElementById("createdImg" + imgCounter).remove();
-                //     document.getElementById("createdImg0").src = imgArray[imgCounter - 1];
-                // }
 
                 if (imgCounter > 1 && imgCounter <= 6) {
                     imgCounter--;
@@ -87,7 +47,7 @@ async function populateImages() {
                     img.src = imgArray[imgCounter];
                 }
 
-                if(imgCounter == 1) {
+                if (imgCounter == 1) {
                     console.log("Föregående " + 0);
                     img.src = imgArray[0];
                 }
