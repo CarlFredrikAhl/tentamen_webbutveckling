@@ -3,6 +3,25 @@ let pressedNext = 0;
 
 let searched = false;
 
+let searchType = document.getElementById("searchType");
+let searchText = document.getElementById("searchText");
+
+searchType.onclick = function() {
+    console.log("click search type");
+    console.log(searchText.placeholder);
+    console.log(searchType.value);
+
+    if(searchType.value == "searchText") {
+        searchText.placeholder = "Sök med ord, tex 'Hund'";
+    
+    } else {
+        searchText.placeholder = "Sök med tags separerat med ','";
+    }
+};
+
+
+console.log(searchType);
+
 async function populateImages() {
 
     let searchText = document.getElementById("searchText").value;

@@ -54,6 +54,7 @@ section {
     align-items:center;
     padding-bottom:30px;
     margin-top: 20px;
+    /* background-color: yellow; */
     /* background-color:red; */
 }
 
@@ -103,5 +104,31 @@ input {
     height: 60px;
     width: 300px;
     font-size: large;
-    text-align: center;
+    /* text-align: center; */
+}
+
+select {
+    height: 66px;
+}
+.radio {
+    height: 20px;
+    left:100px;
+    order:1;
+    margin-right: 0px;
+}
+
+.searchBtn {
+    order:5;
+}
+
+#searchResults {
+    order:4;
+}
+
+#searchText {
+    order:3;
+}
+
+#inputSearchSection p {
+    order:2;
 }
