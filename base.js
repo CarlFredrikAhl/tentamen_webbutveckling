@@ -192,6 +192,19 @@ async function populateImages() {
         console.log(imgCounter);
         img.src = imgArray[imgCounter];
         img.id = "createdImg" + imgCounter;
+        
+        //This is to resize the image to higher quality when mouse over.
+        let curSrc = img.src;
+
+        let splitSrc = curSrc.split(".jpg");
+        // alert(curSrc);
+        let newSrc = splitSrc[0] + "_c.jpg"
+        // alert(newSrc);
+        
+        img.onmouseover = function() {
+            img.src = newSrc;
+        }
+        
         document.getElementById("galImgs").appendChild(img);
 
         if (imgCounter > 0 && imgCounter < imgArray.length) {
