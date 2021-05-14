@@ -1,5 +1,4 @@
 let imgCounter = 0;
-let pressedNext = 0;
 
 let searched = false;
 
@@ -63,7 +62,6 @@ async function populateImages() {
                     console.log(imgCounter);
                     img.src = imgArray[imgCounter];
                     curImgText.textContent = Number(imgCounter) + Number(1) + "/" + searchResults;
-                    // imgCounter++;
                 }
 
                 //The last image
@@ -72,7 +70,6 @@ async function populateImages() {
                     console.log(imgCounter);
                     img.src = imgArray[imgCounter];
                     curImgText.textContent = Number(imgCounter) + Number(1) + "/" + searchResults;
-                    // imgCounter++;
                 }
 
                 //Disable next button when we reach the end
@@ -143,6 +140,8 @@ async function populateImages() {
         let baseURL = "https://api.flickr.com/services/rest";
 
         let key = "647df3a17289ea959496802874c9915b";
+        
+        //Didn't need this
         // let secret = "6909062be24ee8dd";
 
         //Starting as the base query and then it will be concatinated
@@ -194,17 +193,35 @@ async function populateImages() {
         img.id = "createdImg" + imgCounter;
         
         //This is to resize the image to higher quality when mouse over.
-        let curSrc = img.src;
+        img.onmouseover = function () {
 
-        let splitSrc = curSrc.split(".jpg");
-        // alert(curSrc);
-        let newSrc = splitSrc[0] + "_c.jpg"
-        // alert(newSrc);
-        
-        img.onmouseover = function() {
-            img.src = newSrc;
+            if (!img.src.includes("_c.jpg")) {
+                let curSrc = img.src;
+
+                let splitSrc = curSrc.split(".jpg");
+                // alert(curSrc);
+                let newSrc = splitSrc[0] + "_c.jpg"
+                // alert(newSrc);
+                img.src = newSrc;
+
+            }
         }
-        
+
+        //Didn't have time to resize it down again
+        img.onmouseout = function () {
+            // if (img.src.includes("_c.jpg")) {
+            //     //This is to resize the image to higher quality when mouse over.
+            //     let curSrc = img.src;
+
+            //     let splitSrc = curSrc.split("_c.jpg");
+            //     // alert(curSrc);
+            //     let newSrc = splitSrc[0] + "_m.jpg"
+            //     // alert(newSrc);
+                 img.src = newSrc;
+
+            // }
+        }
+
         document.getElementById("galImgs").appendChild(img);
 
         if (imgCounter > 0 && imgCounter < imgArray.length) {
